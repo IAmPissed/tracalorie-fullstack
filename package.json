@@ -1,0 +1,20 @@
+{
+  "name": "tracalorie-fullstack",
+  "version": "1.0.0",
+  "description": "Tracking Calories",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server/server.js",
+    "dev": "nodemon server/server.js"
+  },
+  "author": "Xaniar Vakili",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
