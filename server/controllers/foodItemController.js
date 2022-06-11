@@ -1,16 +1,16 @@
-const getFoodItems = (request, response) => {
+const getFoodItems = async (request, response) => {
     response.send(`Get Food Items`)
 }
 
-const setFoodItem = (request, response) => {
+const setFoodItem = async (request, response) => {
     response.send(`Set Food Item`)
 }
 
-const updateFoodItem = (request, response) => {
+const updateFoodItem = async (request, response) => {
     response.send(`Update Food Item with id ${request.params.id}`)
 }
 
-const deleteFoodItem = (request, response) => {
+const deleteFoodItem = async (request, response) => {
     response.send(`Delete Food Item with id ${request.params.id}`)
 }
 
