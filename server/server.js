@@ -9,6 +9,7 @@ const PORT = process.env.PORT || 3000
 const app = express()
 const publicDirectoryPath = path.join(__dirname, 'public')
 const stylesDirectoryPath = path.join(publicDirectoryPath, 'styles')
+
 connectDB()
 
 
@@ -22,6 +23,8 @@ app.set('view engine', 'ejs')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
+
+app.get('/', (req, res) => res.redirect('/api/users/login'))
 
 app.use('/api/users', require('./routes/userRoutes'))
 app.use('/api/food-items', require('./routes/foodItemRoutes'))
