@@ -7,13 +7,16 @@ const expressLayouts = require('express-ejs-layouts')
 
 const PORT = process.env.PORT || 3000
 const app = express()
+
 const publicDirectoryPath = path.join(__dirname, 'public')
 const stylesDirectoryPath = path.join(publicDirectoryPath, 'styles')
+const scriptsDirectoryPath = path.join(publicDirectoryPath, 'js')
 
 connectDB()
 
 
 app.use(express.static(stylesDirectoryPath))
+app.use(express.static(scriptsDirectoryPath))
 
 app.use(expressLayouts)
 app.set('views', path.join(__dirname, '/views'))
