@@ -1,5 +1,14 @@
+const FoodItem = require('../models/foodItemModel')
+
 const getFoodItems = async (request, response) => {
-    response.send(`Get Food Items`)
+    try {
+        console.log(request.user)
+        const foodItems = await FoodItem.findAll(request.user.userId)
+        response.status(200).json(foodItems)
+    } catch (error) {
+        console.log(error)
+        response.status(500).json({ error: 'Something went wrong' })
+    }
 }
 
 const setFoodItem = async (request, response) => {
