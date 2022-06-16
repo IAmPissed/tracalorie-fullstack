@@ -12,7 +12,22 @@ const {
 } = require('../utils/userContollerUtils')
 
 const loginUser = async (request, response) => {
-    response.send('Login User')
+    try {
+        const { password, email } = request.body
+        const user = await User.findByEmail(email)
+        if (user != null && await bcrypt.compare(password, user.password)) {
+            response.status(200).json({
+                message: 'success',
+                userId: user.user_id,
+                name: user.name,
+                email: user.email,
+                token: generateJWTToken(jwt, user.user_id)
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        response.status(500).json({ error: 'Something went wrong' })
+    }
 }
 
 const signupUser = async (request, response) => {
