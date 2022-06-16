@@ -10,7 +10,12 @@ class User {
         }
     }
     static async create(user) {
-
+        try {
+            const sql = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`
+            await pool.query(sql, [user.name, user.email, user.password])
+        } catch (error) {
+            console.log(error.message)
+        }
     }
     static async findById(id) {
 
