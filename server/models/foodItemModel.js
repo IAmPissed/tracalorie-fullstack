@@ -23,7 +23,12 @@ class FoodItem {
 
     }
     static async findByIdAndDelete(id) {
-
+        try {
+            const sql = `DELETE FROM food_item WHERE food_item_id = $1`
+            await pool.query(sql, [id])
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 }
 
