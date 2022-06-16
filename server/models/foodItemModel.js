@@ -11,7 +11,13 @@ class FoodItem {
         }
     }
     static async create(foodItem) {
-
+        try {
+            const { name, calories, userId } = foodItem
+            const sql = `INSERT INTO food_item (food_item_name, food_item_calories, user_id) VALUES ($1, $2, $3) RETURNING *`
+            return (await pool.query(sql, [name, calories, userId])).rows[0]
+        } catch (error) {
+            console.log(error.message)
+        }
     }
     static async findByIdAndUpdate(id) {
 
