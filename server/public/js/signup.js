@@ -27,7 +27,7 @@ const setFormData = (e) => {
 }
 const checkInput = (e) => {
     const { name } = e.target
-    name === 'passwordConfirmation' ? makeSureMatchesPassword() : null
+    if (name === 'passwordConfirmation') makeSureMatchesPassword()
     const pattern = REGEX_PATTERNS[name]
     validateInput(pattern, e.target)
 }
@@ -54,7 +54,7 @@ const makeSureMatchesPassword = () => {
 const handleSubmit = (e) => {
     e.preventDefault()
     const user = isFormDataValid() ? createUser() : null
-    if (user) sendRequest(user)
+    if (user != null) sendRequest(user)
 }
 const sendRequest = (user) => {
     fetch(API_URL, {
