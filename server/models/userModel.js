@@ -18,7 +18,12 @@ class User {
         }
     }
     static async findById(id) {
-
+        try {
+            const sql = `SELECT * FROM users WHERE id = $1`
+            return (await pool.query(sql, [id])).rows[0]
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 }
 
