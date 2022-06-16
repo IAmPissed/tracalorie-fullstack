@@ -28,7 +28,13 @@ const updateFoodItem = async (request, response) => {
 }
 
 const deleteFoodItem = async (request, response) => {
-    response.send(`Delete Food Item with id ${request.params.id}`)
+    try {
+        const { id } = request.params
+        await FoodItem.findByIdAndDelete(id)
+        response.status(200).json({ message: 'Food Item deleted' })
+    } catch (error) {
+        response.status(500).json({ error: 'Something went wrong' })
+    }
 }
 
 module.exports = {
