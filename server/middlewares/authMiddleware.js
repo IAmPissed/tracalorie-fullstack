@@ -8,8 +8,8 @@ const protect = async (request, response, next) => {
         if (request.headers.authorization && request.headers.authorization.startsWith('Bearer')) {
             token = extractToken(request);
             const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-            const { name, userId, email } = await User.findById(decodedToken.userId);
-            request.user = { name, userId, email };
+            const { name, user_id, email } = await User.findById(decodedToken.userId);
+            request.user = { name, userId: user_id, email };
             next()
         }
     } catch (error) {
