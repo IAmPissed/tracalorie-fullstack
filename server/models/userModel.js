@@ -11,8 +11,9 @@ class User {
     }
     static async create(user) {
         try {
+            const { name, email, password } = user
             const sql = `INSERT INTO users (name, email, password) VALUES ($1, $2, $3)`
-            await pool.query(sql, [user.name, user.email, user.password])
+            await pool.query(sql, [name, email, password])
         } catch (error) {
             console.log(error.message)
         }
