@@ -12,7 +12,15 @@ const getFoodItems = async (request, response) => {
 }
 
 const setFoodItem = async (request, response) => {
-    response.send(`Set Food Item`)
+    try {
+        const { name, calories } = request.body
+        const { userId } = request.user
+        const foodItem = await FoodItem.create({ name, calories, userId })
+        response.status(201).json(foodItem)
+    } catch (error) {
+        console.log(error)
+        response.status(500).json({ error: 'Something went wrong' })
+    }
 }
 
 const updateFoodItem = async (request, response) => {
